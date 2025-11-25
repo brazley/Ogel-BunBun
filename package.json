@@ -1,15 +1,82 @@
 {
-  "name": "bun",
-  "module": "index.ts",
+  "name": "ogel-bunbun",
+  "version": "0.1.0-alpha",
+  "description": "Ogel BunBun - Unified API Gateway for OgelBase Platform",
   "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "prisma",
+    "README.md"
+  ],
   "scripts": {
-    "start": "bun run index.ts"
+    "build": "tsc",
+    "dev": "bun run --hot src/api/server.ts",
+    "start": "bun run src/api/server.ts",
+    "dev:ogelfy": "bun run --hot src/api/server.ts",
+    "dev:tsx": "tsx watch src/index.ts",
+    "start:node": "node dist/index.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset",
+    "test": "bun test",
+    "test:jest": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit"
   },
-  "dependencies": {},
+  "keywords": [
+    "zkeb",
+    "zero-knowledge",
+    "backup",
+    "encryption",
+    "prisma",
+    "postgresql",
+    "e2ee",
+    "bun",
+    "ogelfy"
+  ],
+  "author": "ZKEB Security Team",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "jsonwebtoken": "^9.0.2",
+    "ms": "^2.1.3",
+    "zod": "^3.22.4",
+    "postgres": "^3.4.4"
+  },
   "devDependencies": {
-    "bun-types": "latest"
+    "@types/bun": "latest",
+    "@types/jest": "^29.5.11",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "prisma": "^5.20.0",
+    "ts-jest": "^29.1.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }
